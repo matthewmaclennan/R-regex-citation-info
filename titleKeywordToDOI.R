@@ -7,3 +7,8 @@
  unlist(regmatches(cefasd[unlist(gregexpr("[A-Za-z]+ [A-Za-z]+ [Ff]atty [Aa]cid [A-Za-z]+ [A-Za-z]+",cefasd))>0],
 	gregexpr("https?://dx.doi.org/[A-Za-z0-9./]+",
 	cefasd[unlist(gregexpr("[A-Za-z]+ [A-Za-z]+ [Ff]atty [Aa]cid [A-Za-z]+ [A-Za-z]+",cefasd))>0])))
+#The following outlines a more general regex for "[Ff]atty [Aa]cids?" using the hits to find DOIs that contain all the 
+#appropriate symbols, along with a period at the end.
+unlist(regmatches(cefasd[unlist(gregexpr("[A-Za-z]+[- ][A-Za-z]+ [Ff]atty [Aa]cids? [A-Za-z]+ [A-Za-z]+",cefasd))>0],
+	gregexpr("https?://dx.doi.org/[A-Za-z0-9\\(\\)./-]*.$",
+	cefasd[unlist(gregexpr("[A-Za-z]+[- ][A-Za-z]+ [Ff]atty [Aa]cids? [A-Za-z]+ [A-Za-z]+",cefasd))>0])))
