@@ -12,3 +12,8 @@ results<-c()
     results<-c(results,resultpage)
   }
 results<-results
+#
+#WOL equivalent
+#
+
+#
