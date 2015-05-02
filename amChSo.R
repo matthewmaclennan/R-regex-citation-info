@@ -12,3 +12,4 @@ useInternalNode=T),"//@href"))))
 #creates list object
 #name bob and lop off the reader format string to leave the doi strings (not URLs)
 unlist(strsplit(unlist(bob),"(abstract|references|e?pdf?|full)$"))
+#Springer uses the following
