@@ -16,4 +16,12 @@ results<-results
 #WOL equivalent
 #
 
-#
+#GScho equiv. (arbitrary numbers)
+results<-c()
+  for(i in 0:64){
+    resultpage<-getURL(paste0("https://scholar.google.ca/scholar?start=",i*10,"&q=(%22N-acylisourea%22+OR+%22N-acylurea%22)+AND+EDC&hl=en&as_sdt=0,5"),
+	ssl.verifyhost=F,ssl.verifypeer=F,followlocation=T)
+
+    results<-c(results,resultpage)
+  }
+results<-results
