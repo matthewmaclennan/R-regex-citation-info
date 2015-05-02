@@ -25,3 +25,14 @@ results<-c()
     results<-c(results,resultpage)
   }
 results<-results
+#Compile URLs from results into single vector
+urls<-c()
+for(i in 1:length(results)){
+pageurls<-unlist(xpathApply(htmlTreeParse(results[[i]],useInternalNode=T),"//*[contains(@href,'http://')]",xmlGetAttr,name="href"))
+urls<-c(urls,pageurls)
+}
+urls<-urls
+#for an idea of duplicates
+plot(table(urls))
+#remove duplicates and URLs containing references to GoSch
+unique(urls[-grep("scholar",urls)])
