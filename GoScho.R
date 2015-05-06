@@ -8,6 +8,6 @@ ssl.verifyhost=F,ssl.verifypeer=F,followlocation=T)
 strsplit(unlist(xpathApply(htmlTreeParse(gsc1,useInternalNode=T),"//*[@class='gs_a']",xmlValue))," - ")
 #Extract article snippet
 #The html is parsed, xpath all nodes named "div" (a lot) and regex for sentences containing specific keyword, ending in ellipsis
-#returns character vector.
+#returns character vector. The regex here is for "N-acylisourea" and its sentence.
 unlist(regmatches(unlist(xpathApply(htmlTreeParse(results,useInternalNode=T),"//div",xmlValue)),
 gregexpr(".+N-acylisourea.+\\.{3}",unlist(xpathApply(htmlTreeParse(results,useInternalNode=T),"//div",xmlValue)),perl=T)))
