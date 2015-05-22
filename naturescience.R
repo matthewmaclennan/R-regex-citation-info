@@ -25,3 +25,10 @@ test<-unlist(xpathApply(htmlTreeParse(getURL(paste0("http://www.sciencemag.org/s
 (i-1),collapse="")),useInternalNode=T),"//span[@class='cit-print-date']",xmlValue))
 sciencebigdatayears[[i]]<-as.numeric(unlist(regmatches(test,gregexpr("[0-9]+(?=:)",test,perl=T))))
 }
+
+sciencedatabasetitle<-list()
+for(i in 1:3){
+test<-unlist(xpathApply(htmlTreeParse(getURL(paste0("http://www.sciencemag.org/search?site_area=sciencejournals&y=0&title=database&x=0&journalcode=sci&journalcode=sigtrans&journalcode=scitransmed&submit=yes&hits=100&FIRSTINDEX=",
+(i-1),collapse="")),useInternalNode=T),"//span[@class='cit-print-date']",xmlValue))
+sciencedatabasetitle[[i]]<-as.numeric(unlist(regmatches(test,gregexpr("[0-9]+(?=:)",test,perl=T))))
+}
