@@ -15,11 +15,12 @@ listo<-c("
 listo<-gsub(" ","+",unlist(strsplit(listo,"\n")))
 
 #loop it!
-GoSear1<-function(LIST){
-LISTY<-list()
+GoSear12<-function(LIST){
+LISTY<-c()
 for(i in 1:length(LIST)){
-  LISTY[[i]]<-xpathApply(htmlTreeParse(getURL(paste0("https://www.google.ca/search?q=",LIST[i]),
-    ssl.verifyhost=F,ssl.verifypeer=F,followlocation=T),useInternalNode=T),"//div[@id='resultStats']")
+  NUMB<-xpathApply(htmlTreeParse(getURL(paste0("https://www.google.ca/search?q=",LIST[i]),
+    ssl.verifyhost=F,ssl.verifypeer=F,followlocation=T),useInternalNode=T),"//div[@id='resultStats']",xmlValue)
+  LISTY<-c(LISTY,as.numeric(gsub(",","",unlist(regmatches(unlist(NUMB),gregexpr("[0-9,]+",unlist(NUMB)))))))
   }
   LISTY
 }
