@@ -15,6 +15,25 @@ listo<-c("
 listo<-gsub(" ","+",unlist(strsplit(listo,"\n")))
 
 #loop it!
+
+GoSear<-function(LIST){
+LISTY<-list()
+for(i in 1:length(LIST)){
+  LISTY[[i]]<-htmlTreeParse(getURL(paste0("https://www.google.ca/search?q=",LIST[i]),
+    ssl.verifyhost=F,ssl.verifypeer=F,followlocation=T),useInternalNode=T)
+  }
+  LISTY
+}
+
+GoSear1<-function(LIST){
+LISTY<-list()
+for(i in 1:length(LIST)){
+  LISTY[[i]]<-xpathApply(htmlTreeParse(getURL(paste0("https://www.google.ca/search?q=",LIST[i]),
+    ssl.verifyhost=F,ssl.verifypeer=F,followlocation=T),useInternalNode=T),"//div[@id='resultStats']")
+  }
+  LISTY
+}
+
 GoSear12<-function(LIST){
 LISTY<-c()
 for(i in 1:length(LIST)){
