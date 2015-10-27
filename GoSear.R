@@ -3,6 +3,9 @@
 mirex.gr<-htmlTreeParse(getURL("https://www.google.ca/search?q=mirex",
   ssl.verifyhost=F,ssl.verifypeer=F,followlocation=T),useInternalNode=T)
 xpathApply(mirex.gr,"//div[@id='resultStats']")
+#result number as numeric object.
+as.numeric(gsub(",","",unlist(regmatches(unlist(xpathApply(mirex.gr,"//div[@id='resultStats']",xmlValue)),gregexpr("[0-9,]+",unlist(xpathApply(mirex.gr,"//div[@id='resultStats']",xmlValue)))))))
+
 
 #Take a list of words from Word or other vector and convert to vector in R
 listo<-c("
