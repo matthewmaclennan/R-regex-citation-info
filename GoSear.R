@@ -5,7 +5,11 @@ mirex.gr<-htmlTreeParse(getURL("https://www.google.ca/search?q=mirex",
 xpathApply(mirex.gr,"//div[@id='resultStats']")
 #result number as numeric object.
 as.numeric(gsub(",","",unlist(regmatches(unlist(xpathApply(mirex.gr,"//div[@id='resultStats']",xmlValue)),gregexpr("[0-9,]+",unlist(xpathApply(mirex.gr,"//div[@id='resultStats']",xmlValue)))))))
-
+#General commands
+#total results "//div[@id='resultStats']"
+#Date of each entry xpathApply(bob[[1]],"//span[@class='f']")
+#Entry summary xpathApply(bob[[1]],"//span[@class='st']",xmlValue)
+#Entry URL xpathApply(bob[[1]],"//h3[@class='r']/a",xmlAttrs) and this must be prefixed with www.google.com
 
 #Take a list of words from Word or other vector and convert to vector in R
 listo<-c("
