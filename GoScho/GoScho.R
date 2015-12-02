@@ -15,3 +15,12 @@ strsplit(unlist(xpathApply(htmlTreeParse(gsc1,useInternalNode=T),"//*[@class='gs
 #returns character vector. The regex here is for "N-acylisourea" and its sentence.
 unlist(regmatches(unlist(xpathApply(htmlTreeParse(results,useInternalNode=T),"//div",xmlValue)),
 gregexpr(".+N-acylisourea.+\\.{3}",unlist(xpathApply(htmlTreeParse(results,useInternalNode=T),"//div",xmlValue)),perl=T)))
+
+
+#Dec 02, 2015 this works.
+xpathApply(content(GET("http://scholar.google.ca/scholar?q=%22knowledge+mobilization%22",ssl.verifyhost=F,ssl.verifypeer=F,followlocation=T)),"//div[@id='gs_ab_md']")
+
+listy<-list()
+for(i in 1:96){
+listy[[i]]<-GET(paste0("http://scholar.google.ca/scholar?q=%22knowledge+mobilization%22","&start=",i*10),ssl.verifyhost=F,ssl.verifypeer=F,followlocation=T)
+}
