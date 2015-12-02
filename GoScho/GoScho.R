@@ -3,6 +3,10 @@
 #in order to bypass the https.
 getURL("https://scholar.google.ca/scholar?hl=en&q=%22capillary+electrophoresis%22+acid+%28fatty+OR+*oic+OR+naphthenic%29&btnG=&as_sdt=1%2C5&as_sdtp=",
 ssl.verifyhost=F,ssl.verifypeer=F,followlocation=T)
+#If getURL does not work, then load the httr package
+library(httr)
+#Use GET() and content() to read the text.
+content(GET("http://scholar.google.ca/scholar?q=knowledge+mobilization",ssl.verifyhost=F,ssl.verifypeer=F,followlocation=T))
 #extract author and journal/repository information, where gs_a likely stands for "Google Scholar author"
 #returns a list of likely 3 objects in a vector
 strsplit(unlist(xpathApply(htmlTreeParse(gsc1,useInternalNode=T),"//*[@class='gs_a']",xmlValue))," - ")
