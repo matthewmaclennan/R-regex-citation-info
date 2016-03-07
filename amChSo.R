@@ -1,7 +1,8 @@
 #Finding DOIs in html
 xpathApply(htmlTreeParse(getURL("http://pubs.acs.org/JACSbeta/jvi/issue31.html"),useInternalNode=T),"//div[@class='DOI']")
 #accessing the page for articles DOI
-#
+#Access synopsis by double parenting the DOI
+xpathApply(htmlTreeParse(getURL("http://pubs.acs.org/JACSbeta/jvi/issue31.html"),useInternalNode=T),"//div[@class='DOI']/parent::*/parent::*//div[@class='synopsis']")
 #
 #WOL html search for DOIs; include the string &start=1 in the url to change the starting point.
 regmatches(unlist(xpathApply(xmlTreeParse(getURL("http://onlinelibrary.wiley.com/advanced/search/results/reentry?scope=allContent&query=capillary+electrophoresis+acid&inTheLastList=6&queryStringEntered=false&searchRowCriteria[0].fieldName=all-fields&searchRowCriteria[0].booleanConnector=and&searchRowCriteria[1].fieldName=all-fields&searchRowCriteria[1].booleanConnector=and&searchRowCriteria[2].fieldName=all-fields&searchRowCriteria[2].booleanConnector=and"),
