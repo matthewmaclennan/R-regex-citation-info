@@ -6,10 +6,10 @@ ssl.verifyhost=F,ssl.verifypeer=F,followlocation=T)
 #If getURL does not work, then load the httr package
 library(httr)
 #Use GET() and content() to read the text.
-content(GET("http://scholar.google.ca/scholar?q=knowledge+mobilization",ssl.verifyhost=F,ssl.verifypeer=F,followlocation=T))
+gsc1<-content(GET("http://scholar.google.ca/scholar?q=knowledge+mobilization",ssl.verifyhost=F,ssl.verifypeer=F,followlocation=T))
 #extract author and journal/repository information, where gs_a likely stands for "Google Scholar author"
 #returns a list of likely 3 objects in a vector
-strsplit(unlist(xpathApply(htmlTreeParse(gsc1,useInternalNode=T),"//*[@class='gs_a']",xmlValue))," - ")
+strsplit(unlist(xpathApply(gsc1,"//*[@class='gs_a']",xmlValue))," - ")
 #Extract article snippet
 #The html is parsed, xpath all nodes named "div" (a lot) and regex for sentences containing specific keyword, ending in ellipsis
 #returns character vector. The regex here is for "N-acylisourea" and its sentence.
