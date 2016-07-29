@@ -6,7 +6,8 @@ ssl.verifyhost=F,ssl.verifypeer=F,followlocation=T)
 #If getURL does not work, then load the httr package
 library(httr)
 #Use GET() and content() to read the text.
-gsc1<-content(GET("http://scholar.google.ca/scholar?q=knowledge+mobilization",ssl.verifyhost=F,ssl.verifypeer=F,followlocation=T))
+gsc1<-content(GET("http://scholar.google.ca/scholar?q=%22taylor dispersion%22 protein&as_ylo=1996&as_yhi=2016&num=20",
+ssl.verifyhost=F,ssl.verifypeer=F,followlocation=T))
 #extract author and journal/repository information, where gs_a likely stands for "Google Scholar author"
 #returns a list of likely 3 objects in a vector
 strsplit(unlist(xpathApply(gsc1,"//*[@class='gs_a']",xmlValue))," - ")
